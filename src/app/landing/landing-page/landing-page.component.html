@@ -1,0 +1,55 @@
+<div>
+  <h1>Welcome to NFB</h1>
+  <h2>Meet Our Amazing Team!</h2>
+  <div class="row">
+    <div class="card col-lg-2 row" *ngFor="let item of list">
+      <div class="row" (click)="editMemberModal(item, content)" >
+        <div class="col-5">
+          <img src="assets/{{item.gender}}-avatar.png" alt="avatar">
+        </div>
+        <div class="col-7">
+          <span class="col">{{item.name}}</span>
+          <div class="w-100"></div>
+          <span class="col">{{item.lastName}}</span>
+          <div class="w-100"></div>
+          <span class="col">{{item.rol}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button (click)="open(content, null)">Add</button>
+<button routerLink="/login">Login</button>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="memberForm">
+      <div class="form-group">
+        <label for="name">Nombres</label>
+        <input type="text" formControlName="name">
+      </div>
+      <div class="form-group">
+        <label for="name">Apellidos</label>
+        <input type="text" formControlName="lastName">
+      </div>
+      <div class="form-group">
+        <label for="name">Rol</label>
+        <input type="text" formControlName="rol">
+      </div>
+      <div class="form-group">
+        <label for="name">Genero</label>
+        <input type="text" formControlName="gender">
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div>
+</ng-template>
